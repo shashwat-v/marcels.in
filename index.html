@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marcel's — A neighbourhood space, New Delhi</title>
+  <meta name="description" content="Marcel's is a neighbourhood café in New Delhi where the coffee gets serious and strangers start to feel like regulars." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" aria-label="Main navigation">
+  <div class="shell nav-inner">
+    <div class="wordmark">Marcel<span class="apos">'</span>s</div>
+    <ul class="nav-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#instagram">Journal</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <div class="nav-aside">New Delhi <span class="dot">·</span> Est. 2024</div>
+  </div>
+</nav>
+
+<!-- ============ THE CUP (fixed, travels horizontally on scroll) ============ -->
+<div id="cup-anchor" aria-hidden="true">
+  <canvas id="cup-canvas"></canvas>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="shell hero-row row">
+
+    <div class="hero-left">
+      <div class="eyebrow hero-eyebrow">New Delhi · Est. 2024</div>
+
+      <h1 class="hero-headline">
+        <span class="l">A neighbourhood</span>
+        <span class="l">space <span class="it">dreamt</span></span>
+        <span class="l"><span class="amp">&amp;</span> <span class="it">built.</span></span>
+      </h1>
+
+      <p class="hero-sub">
+        Marcel's is where the city slows down, the coffee gets serious,
+        and strangers start to feel like regulars.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#visit">Visit Us</a>
+        <a class="btn btn-ghost" href="#story">Our Story <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Right column — cup floats here during the hero -->
+    <div class="hero-stage" aria-hidden="true">
+      <div class="stage-label">
+        The Cup<br/>
+        <b>follow it down →</b>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hero-foot">
+    <div class="hours"><b>Mon – Sun</b> · 10 am – 11 pm</div>
+    <div class="vline"></div>
+    <div class="scroll"><span class="bar"></span> Scroll</div>
+  </div>
+</section>
+
+<div class="shell"><div class="rule"></div></div>
+
+<!-- ============ STORY + INSTAGRAM ============ -->
+<section class="story" id="story">
+  <div class="shell">
+    <div class="story-grid">
+
+      <!-- LEFT: Brand manifesto -->
+      <div>
+        <div class="eyebrow">Our Story</div>
+        <p class="pull-quote">
+          <span class="mark">"</span>We never wanted to be a café.<br/>
+          We wanted to be <em>yours</em>.<span class="mark">"</span>
+        </p>
+
+        <div class="body-copy">
+          <p>
+            There's a particular kind of morning that only happens in a
+            neighbourhood you know by heart — the one where you walk in,
+            nod at the face behind the bar, and your cup arrives before
+            you've found your seat.
+          </p>
+          <p>
+            Marcel's was built for that morning. Not for the city, not
+            for the algorithm — for the block. Every detail, from the
+            coffee to the corners, was chosen so this place feels like
+            it was always here.
+          </p>
+          <p>
+            We serve espresso the way it deserves to be: unhurried,
+            honest, and worth sitting down for. Come once and you'll
+            see. Come twice, and you're already a regular.
+          </p>
+        </div>
+
+        <div class="signature">
+          <span class="dash">—</span>Rudraks,
+          <span style="color:var(--muted);font-style:normal;font-family:var(--sans);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;margin-left:6px;">Founder</span>
+        </div>
+      </div>
+
+      <!-- MIDDLE: space the cup floats through -->
+      <div class="story-spacer" aria-hidden="true"></div>
+
+      <!-- RIGHT: Instagram journal -->
+      <div id="instagram">
+        <div class="ig-head">
+          <div class="eyebrow">Journal</div>
+          <div class="ig-handle">@marcels.in</div>
+        </div>
+
+        <div class="ig-grid">
+          <a class="ig-cell" href="#" aria-label="Tira-Miss-U Latte">
+            <div class="placeholder"></div>
+            <div class="ig-cap">Tira-Miss-U Latte</div>
+            <div class="overlay" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+            </div>
+          </a>
+          <a class="ig-cell" href="#" aria-label="The 6-Layer Victoria">
+            <div class="placeholder"></div>
+            <div class="ig-cap">The 6-Layer Victoria</div>
+            <div class="overlay" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+            </div>
+          </a>
+          <a class="ig-cell" href="#" aria-label="A Warm Hug">
+            <div class="placeholder"></div>
+            <div class="ig-cap">A Warm Hug</div>
+            <div class="overlay" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+            </div>
+          </a>
+          <a class="ig-cell" href="#" aria-label="Espresso Patience">
+            <div class="placeholder"></div>
+            <div class="ig-cap">Espresso Patience</div>
+            <div class="overlay" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+            </div>
+          </a>
+          <a class="ig-cell" href="#" aria-label="Behind the Bar">
+            <div class="placeholder"></div>
+            <div class="ig-cap">Behind the Bar</div>
+            <div class="overlay" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+            </div>
+          </a>
+          <a class="ig-cell" href="#" aria-label="After Hours">
+            <div class="placeholder"></div>
+            <div class="ig-cap">After Hours</div>
+            <div class="overlay" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+            </div>
+          </a>
+        </div>
+
+        <a class="ig-follow" href="#">Follow us on Instagram <span>→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="shell"><div class="rule"></div></div>
+
+<!-- ============ VISIT ============ -->
+<section class="visit" id="visit">
+  <div class="shell visit-row row">
+
+    <!-- Left column — cup rests here in the visit section -->
+    <div class="visit-stage" aria-hidden="true">
+      <div class="stage-label" style="left:0;right:auto;text-align:left;">
+        Cup rests here<br/>
+        <b>— the end of the walk</b>
+      </div>
+    </div>
+
+    <div class="visit-left">
+      <div class="eyebrow">Find Us</div>
+      <p class="visit-lead">
+        Come find us. We're where the
+        <span class="it">neighbourhood feels like home.</span>
+      </p>
+
+      <div class="info-rows">
+        <div class="info-row">
+          <div class="label">Location</div>
+          <div class="value">New Delhi, India</div>
+        </div>
+        <div class="info-row">
+          <div class="label">Hours</div>
+          <div class="value">Monday – Sunday &nbsp;·&nbsp; 10 am – 11 pm</div>
+        </div>
+        <div class="info-row">
+          <div class="label">Phone</div>
+          <div class="value"><a href="tel:+910000000000">+91 · phone tk</a></div>
+        </div>
+        <div class="info-row">
+          <div class="label">Email</div>
+          <div class="value"><a href="mailto:hello@marcels.in">hello@marcels.in</a></div>
+        </div>
+      </div>
+
+      <div class="map-card" id="mapCard" role="button" tabindex="0" aria-label="Open in Google Maps">
+        <div class="map-inner">
+          <svg class="map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z"/>
+            <circle cx="12" cy="9.5" r="2.4"/>
+          </svg>
+          <div class="map-text">Open in Google Maps ↗</div>
+        </div>
+      </div>
+
+      <div class="social-row">
+        <a class="btn btn-ghost" href="#">Instagram <span class="arrow">↗</span></a>
+        <a class="btn btn-ghost" href="#">Get Directions <span class="arrow">↗</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="shell footer-inner">
+    <div class="foot-left">© 2025 Marcel's</div>
+    <div class="foot-mark">M A R C E L ' S</div>
+    <div class="foot-right">a neighbourhood space</div>
+  </div>
+</footer>
+
+<!-- Three.js (r128 UMD) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" defer></script>
+
+<!-- Site scripts -->
+<script src="./js/cup.js" defer></script>
+<script src="./js/scroll.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Marcel's — A neighbourhood space, New Delhi</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ---------- Tokens ---------- */
+  :root {
+    --bg:           #FAF5EE;
+    --bg-warm:      #F0E6D3;
+    --burgundy:     #6B0F1A;
+    --burgundy-hi:  #8B1A28;
+    --ink:          #2A1008;
+    --muted:        #7A5C4E;
+    --rule:         rgba(107, 15, 26, 0.15);
+    --rule-strong:  rgba(107, 15, 26, 0.28);
+    --tile-a:       #E8D9C8;
+    --tile-b:       #D4C4B0;
+
+    --serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+    --sans:  "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    --max:   1380px;
+    --gutter: clamp(28px, 5vw, 88px);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.9;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+
+    /* Faint linen / dot grid texture */
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(107, 15, 26, 0.045) 1px, transparent 0);
+    background-size: 22px 22px;
+    background-attachment: fixed;
+  }
+
+  ::selection { background: var(--burgundy); color: var(--bg); }
+
+  /* ---------- Layout primitives ---------- */
+  .shell {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+  }
+  .rule { height: 1px; background: var(--rule); width: 100%; }
+  .rule-strong { height: 1px; background: var(--rule-strong); width: 100%; }
+
+  /* ---------- Top nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 245, 238, 0.85);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+  .wordmark {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 0.32em;
+    color: var(--burgundy);
+    text-transform: uppercase;
+  }
+  .wordmark .apos { font-style: italic; font-weight: 400; letter-spacing: 0; }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .nav-links a {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 10.5px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 6px 2px;
+    border-bottom: 1px solid transparent;
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .nav-links a:hover { color: var(--burgundy); border-bottom-color: var(--burgundy); }
+  .nav-aside {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 10.5px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .nav-aside .dot { color: var(--burgundy); margin: 0 8px; }
+
+  /* ---------- Eyebrow label ---------- */
+  .eyebrow {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--burgundy);
+    opacity: 0.7;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 26px;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+  }
+  .btn-solid {
+    background: var(--burgundy);
+    color: var(--bg);
+    border: 1px solid var(--burgundy);
+  }
+  .btn-solid:hover {
+    background: var(--burgundy-hi);
+    border-color: var(--burgundy-hi);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--rule-strong);
+  }
+  .btn-ghost:hover {
+    border-color: var(--burgundy);
+    color: var(--burgundy);
+  }
+  .btn .arrow { transition: transform .25s ease; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    padding-top: clamp(60px, 9vw, 110px);
+    padding-bottom: clamp(80px, 10vw, 140px);
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+  }
+  .hero-row { width: 100%; }
+  .hero-eyebrow {
+    margin-bottom: clamp(28px, 4vw, 44px);
+    opacity: 0;
+    animation: fadeUp .9s .1s ease forwards;
+  }
+  .hero-headline {
+    font-family: var(--serif);
+    font-weight: 300;
+    color: var(--ink);
+    font-size: clamp(56px, 7.6vw, 116px);
+    line-height: 1.02;
+    letter-spacing: -0.005em;
+    margin: 0 0 clamp(28px, 3.6vw, 44px);
+  }
+  .hero-headline .l { display: block; opacity: 0; transform: translateY(14px); animation: fadeUp .9s ease forwards; }
+  .hero-headline .l:nth-child(1) { animation-delay: .18s; }
+  .hero-headline .l:nth-child(2) { animation-delay: .30s; }
+  .hero-headline .l:nth-child(3) { animation-delay: .42s; }
+  .hero-headline .it {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--burgundy);
+  }
+  .hero-headline .amp {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--burgundy);
+    margin-right: 6px;
+  }
+
+  .hero-sub {
+    font-family: var(--sans);
+    font-weight: 300;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.9;
+    max-width: 440px;
+    margin: 0 0 clamp(32px, 4vw, 48px);
+    opacity: 0;
+    animation: fadeUp .9s .55s ease forwards;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp .9s .68s ease forwards;
+  }
+  .hero-foot {
+    position: absolute;
+    left: var(--gutter);
+    bottom: clamp(32px, 4vw, 56px);
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    opacity: 0;
+    animation: fadeUp .9s .8s ease forwards;
+  }
+  .hero-foot .hours {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero-foot .hours b { color: var(--ink); font-weight: 400; }
+  .hero-foot .vline { width: 1px; height: 18px; background: var(--rule-strong); }
+  .hero-foot .scroll {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-foot .scroll .bar {
+    display: inline-block; width: 22px; height: 1px; background: var(--burgundy);
+    animation: pulseBar 2.4s ease-in-out infinite;
+  }
+
+  /* Right column placeholder column (the cup occupies this visually) */
+  .hero-stage,
+  .visit-stage {
+    position: relative;
+    height: 520px;
+  }
+  .stage-label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.8;
+  }
+  .stage-label b { color: var(--burgundy); font-weight: 400; }
+
+  /* ---------- STORY SECTION ---------- */
+  .story {
+    position: relative;
+    padding-top: clamp(120px, 14vw, 180px);
+    padding-bottom: clamp(120px, 14vw, 180px);
+  }
+  .story .rule-top { margin-bottom: clamp(80px, 10vw, 120px); }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr minmax(180px, 280px) 1fr;
+    gap: clamp(40px, 5vw, 80px);
+    align-items: start;
+  }
+  /* middle column holds the cup space + small caption */
+  .story-spacer {
+    position: relative;
+    min-height: 520px;
+  }
+
+  .pull-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--burgundy);
+    font-size: clamp(36px, 4.4vw, 60px);
+    line-height: 1.18;
+    letter-spacing: -0.005em;
+    margin: 28px 0 44px;
+  }
+  .pull-quote .mark { color: var(--burgundy); opacity: 0.55; }
+
+  .body-copy p {
+    font-family: var(--sans);
+    font-weight: 300;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.95;
+    margin: 0 0 18px;
+    max-width: 440px;
+  }
+  .body-copy p:last-of-type { margin-bottom: 0; }
+
+  .signature {
+    margin-top: 36px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink);
+    font-size: 19px;
+    letter-spacing: 0.01em;
+  }
+  .signature .dash { color: var(--burgundy); margin-right: 8px; }
+
+  /* Instagram */
+  .ig-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+  .ig-handle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--burgundy);
+    font-size: 22px;
+  }
+  .ig-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .ig-cell {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    cursor: pointer;
+    background: var(--tile-a);
+  }
+  .ig-cell:nth-child(odd) { background: var(--tile-b); }
+  .ig-cell .placeholder {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(135deg,
+        rgba(107,15,26,0.04) 0 12px,
+        transparent 12px 24px);
+  }
+  .ig-cap {
+    position: absolute;
+    left: 12px;
+    bottom: 10px;
+    right: 12px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.25;
+    color: var(--ink);
+    opacity: 0.75;
+    transition: opacity .25s ease;
+  }
+  .ig-cell .overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--burgundy);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .3s ease;
+  }
+  .ig-cell .overlay svg { width: 28px; height: 28px; color: var(--bg); }
+  .ig-cell:hover .overlay { opacity: 0.92; }
+  .ig-cell:hover .ig-cap { opacity: 0; }
+
+  .ig-follow {
+    margin-top: 28px;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 6px;
+    transition: border-color .25s ease, color .25s ease;
+  }
+  .ig-follow:hover { color: var(--burgundy-hi); border-bottom-color: var(--burgundy); }
+
+  /* ---------- VISIT SECTION ---------- */
+  .visit {
+    position: relative;
+    padding-top: clamp(120px, 14vw, 180px);
+    padding-bottom: clamp(120px, 14vw, 180px);
+  }
+  .visit .rule-top { margin-bottom: clamp(80px, 10vw, 120px); }
+
+  .visit-row { width: 100%; }
+  .visit-lead {
+    font-family: var(--serif);
+    font-weight: 300;
+    color: var(--ink);
+    font-size: clamp(28px, 3.2vw, 40px);
+    line-height: 1.22;
+    margin: 24px 0 56px;
+    max-width: 520px;
+  }
+  .visit-lead .it { font-style: italic; color: var(--burgundy); }
+
+  .info-rows {
+    border-top: 1px solid var(--rule);
+  }
+  .info-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .info-row .label {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .info-row .value {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .info-row .value a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .info-row .value a:hover { color: var(--burgundy); border-bottom-color: var(--burgundy); }
+
+  /* Map placeholder */
+  .map-card {
+    margin-top: 48px;
+    position: relative;
+    height: 240px;
+    background:
+      linear-gradient(180deg, #EFE3D2, #E8D9C8);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color .25s ease;
+  }
+  .map-card:hover { border-color: var(--burgundy); }
+  .map-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(107,15,26,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(107,15,26,0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .map-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(115deg, transparent 0 38%, rgba(107,15,26,0.07) 38% 39%, transparent 39% 62%, rgba(107,15,26,0.07) 62% 63%, transparent 63%);
+  }
+  .map-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  .map-pin {
+    width: 36px;
+    height: 36px;
+    margin: 0 auto 14px;
+    color: var(--burgundy);
+  }
+  .map-text {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--burgundy);
+  }
+
+  .social-row {
+    margin-top: 36px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 40px 0 56px;
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+  .foot-left, .foot-right {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .foot-right {
+    text-align: right;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--ink);
+  }
+  .foot-mark {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 0.42em;
+    color: var(--burgundy);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  /* ---------- THE CUP (sticky / fixed, scroll-linked) ---------- */
+  #cup-anchor {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    /* starts in the right column of the hero — see scroll script below */
+    transform: translate3d(58vw, -50%, 0);
+    width: 320px;
+    height: 400px;
+    z-index: 10;
+    pointer-events: none;
+    will-change: transform;
+    transition: transform .35s cubic-bezier(.22,.61,.36,1);
+  }
+  #cup-canvas {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    /* THREE.JS GLB GOES HERE */
+  }
+
+  /* Visual placeholder shown until GLB is injected */
+  .cup-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .cup-placeholder .cup-vis {
+    width: 220px;
+    height: 280px;
+    position: relative;
+  }
+  /* a simple non-photographic placeholder: stripe-filled circle (no detailed SVG) */
+  .cup-placeholder .cup-vis::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(107,15,26,0.10) 0 8px,
+      rgba(107,15,26,0.04) 8px 16px
+    );
+    border: 1px dashed var(--rule-strong);
+  }
+  .cup-placeholder .cup-label {
+    font-family: var(--sans);
+    font-size: 9.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.7;
+  }
+  .cup-placeholder .cup-label b {
+    color: var(--burgundy);
+    font-weight: 400;
+  }
+
+  /* Decorative scroll progress bar in cup column */
+  .cup-progress {
+    position: fixed;
+    top: 50%;
+    transform: translateY(120px);
+    left: calc(5vw + 160px);
+    width: 1px;
+    height: 60px;
+    background: var(--rule);
+    z-index: 9;
+    pointer-events: none;
+    transition: left .35s cubic-bezier(.22,.61,.36,1);
+  }
+  .cup-progress::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 0%;
+    background: var(--burgundy);
+    transition: height .15s linear;
+  }
+
+  /* ---------- Animations ---------- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulseBar {
+    0%, 100% { transform: scaleX(1); opacity: 1; transform-origin: left; }
+    50%      { transform: scaleX(1.6); opacity: 0.6; transform-origin: left; }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" data-screen-label="Nav">
+  <div class="shell nav-inner">
+    <div class="wordmark">Marcel<span class="apos">'</span>s</div>
+    <ul class="nav-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#instagram">Journal</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <div class="nav-aside">New Delhi <span class="dot">·</span> Est. 2024</div>
+  </div>
+</nav>
+
+<!-- ============ THE CUP (fixed, travels horizontally on scroll) ============ -->
+<div id="cup-anchor" aria-hidden="true">
+  <div id="cup-canvas">
+    <!-- THREE.JS GLB GOES HERE -->
+    <div class="cup-placeholder">
+      <div class="cup-vis"></div>
+      <div class="cup-label">
+        <b>Cup · 3D</b><br/>
+        Three.js .glb mounts here
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero" data-screen-label="01 Hero">
+  <div class="shell hero-row row">
+    <div class="hero-left">
+      <div class="eyebrow hero-eyebrow">New Delhi · Est. 2024</div>
+
+      <h1 class="hero-headline">
+        <span class="l">A neighbourhood</span>
+        <span class="l">space <span class="it">dreamt</span></span>
+        <span class="l"><span class="amp">&amp;</span> <span class="it">built.</span></span>
+      </h1>
+
+      <p class="hero-sub">
+        Marcel's is where the city slows down, the coffee gets serious,
+        and strangers start to feel like regulars.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#visit">Visit Us</a>
+        <a class="btn btn-ghost" href="#story">Our Story <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="hero-stage" aria-hidden="true">
+      <div class="stage-label">
+        The Cup<br/>
+        <b>follow it down →</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-foot shell" style="left:0; right:0; padding-left:var(--gutter); padding-right:var(--gutter); display:flex;">
+    <div class="hours"><b>Mon – Sun</b> · 10 am – 11 pm</div>
+    <div class="vline"></div>
+    <div class="scroll"><span class="bar"></span> Scroll</div>
+  </div>
+</section>
+
+<div class="shell"><div class="rule"></div></div>
+
+<!-- ============ STORY + INSTAGRAM ============ -->
+<section class="story" id="story" data-screen-label="02 Story">
+  <div class="shell">
+    <div class="story-grid">
+
+      <!-- LEFT: Brand manifesto -->
+      <div>
+        <div class="eyebrow">Our Story</div>
+        <p class="pull-quote">
+          <span class="mark">"</span>We never wanted to be a café.<br/>
+          We wanted to be <em>yours</em>.<span class="mark">"</span>
+        </p>
+
+        <div class="body-copy">
+          <p>
+            There's a particular kind of morning that only happens in a
+            neighbourhood you know by heart — the one where you walk in,
+            nod at the face behind the bar, and your cup arrives before
+            you've found your seat.
+          </p>
+          <p>
+            Marcel's was built for that morning. Not for the city, not
+            for the algorithm — for the block. Every detail, from the
+            coffee to the corners, was chosen so this place feels like
+            it was always here.
+          </p>
+          <p>
+            We serve espresso the way it deserves to be: unhurried,
+            honest, and worth sitting down for. Come once and you'll
+            see. Come twice, and you're already a regular.
+          </p>
+        </div>
+
+        <div class="signature">
+          <span class="dash">—</span>Rudraks, <span style="color:var(--muted); font-style: normal; font-family: var(--sans); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; margin-left: 6px;">Founder</span>
+        </div>
+      </div>
+
+      <!-- MIDDLE: space that the cup floats through -->
+      <div class="story-spacer" aria-hidden="true"></div>
+
+      <!-- RIGHT: Instagram -->
+      <div id="instagram">
+        <div class="ig-head">
+          <div class="eyebrow">Journal</div>
+          <div class="ig-handle">@marcels.in</div>
+        </div>
+
+        <div class="ig-grid">
+          <a class="ig-cell" href="#">
+            <div class="placeholder"></div>
+            <div class="ig-cap">Tira-Miss-U Latte</div>
+            <div class="overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="3" y="3" width="18" height="18" rx="4"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+              </svg>
+            </div>
+          </a>
+          <a class="ig-cell" href="#">
+            <div class="placeholder"></div>
+            <div class="ig-cap">The 6-Layer Victoria</div>
+            <div class="overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="3" y="3" width="18" height="18" rx="4"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+              </svg>
+            </div>
+          </a>
+          <a class="ig-cell" href="#">
+            <div class="placeholder"></div>
+            <div class="ig-cap">A Warm Hug</div>
+            <div class="overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="3" y="3" width="18" height="18" rx="4"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+              </svg>
+            </div>
+          </a>
+          <a class="ig-cell" href="#">
+            <div class="placeholder"></div>
+            <div class="ig-cap">Espresso Patience</div>
+            <div class="overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="3" y="3" width="18" height="18" rx="4"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+              </svg>
+            </div>
+          </a>
+          <a class="ig-cell" href="#">
+            <div class="placeholder"></div>
+            <div class="ig-cap">Behind the Bar</div>
+            <div class="overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="3" y="3" width="18" height="18" rx="4"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+              </svg>
+            </div>
+          </a>
+          <a class="ig-cell" href="#">
+            <div class="placeholder"></div>
+            <div class="ig-cap">After Hours</div>
+            <div class="overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="3" y="3" width="18" height="18" rx="4"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        <a class="ig-follow" href="#">Follow us on Instagram <span>→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="shell"><div class="rule"></div></div>
+
+<!-- ============ VISIT ============ -->
+<section class="visit" id="visit" data-screen-label="03 Visit">
+  <div class="shell visit-row row">
+    <div class="visit-stage" aria-hidden="true">
+      <div class="stage-label" style="left:0; right:auto; text-align:left;">
+        Cup rests here<br/>
+        <b>— the end of the walk</b>
+      </div>
+    </div>
+
+    <div class="visit-left">
+      <div class="eyebrow">Find Us</div>
+      <p class="visit-lead">
+        Come find us. We're where the
+        <span class="it">neighbourhood feels like home.</span>
+      </p>
+
+      <div class="info-rows">
+        <div class="info-row">
+          <div class="label">Location</div>
+          <div class="value">New Delhi, India</div>
+        </div>
+        <div class="info-row">
+          <div class="label">Hours</div>
+          <div class="value">Monday – Sunday &nbsp;·&nbsp; 10 am – 11 pm</div>
+        </div>
+        <div class="info-row">
+          <div class="label">Phone</div>
+          <div class="value"><a href="tel:+910000000000">+91 · phone tk</a></div>
+        </div>
+        <div class="info-row">
+          <div class="label">Email</div>
+          <div class="value"><a href="mailto:hello@marcels.in">hello@marcels.in</a></div>
+        </div>
+      </div>
+
+      <div class="map-card" id="mapCard">
+        <div class="map-inner">
+          <svg class="map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z"/>
+            <circle cx="12" cy="9.5" r="2.4"/>
+          </svg>
+          <div class="map-text">Open in Google Maps ↗</div>
+        </div>
+      </div>
+
+      <div class="social-row">
+        <a class="btn btn-ghost" href="#">Instagram <span class="arrow">↗</span></a>
+        <a class="btn btn-ghost" href="#">Get Directions <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="shell footer-inner">
+    <div class="foot-left">© 2025 Marcel's</div>
+    <div class="foot-mark">M A R C E L ' S</div>
+    <div class="foot-right">a neighbourhood space</div>
+  </div>
+</footer>
+
+<script>
+  // ---------- Scroll-linked cup travel ----------
+  // The cup-anchor is position: fixed, vertically centered. We translate it
+  // horizontally based on scroll progress through the document.
+  //
+  // The hero places text on the left and the cup in the right column; the
+  // story section sits the cup in the middle, between the manifesto column
+  // and the journal grid; the visit section puts the cup on the LEFT, with
+  // info & map on the right. So the cup travels:
+  //
+  //   0.00 – 0.33  →  RIGHT  (~58vw)                — hero
+  //   0.33 – 0.66  →  RIGHT → CENTER (~37vw)        — into the story
+  //   0.66 – 1.00  →  CENTER → LEFT  (~60px gutter) — out to visit
+
+  (function () {
+    const cup = document.getElementById('cup-anchor');
+    if (!cup) return;
+
+    const vw = (n) => (window.innerWidth * n) / 100;
+
+    // Right-column anchor. Keep the cup (320px wide) tucked into the right
+    // half but not flush with the edge; clamp so it works on narrow viewports.
+    const RIGHT  = () => {
+      const w = window.innerWidth;
+      // ideally cup right-edge sits ~60px from viewport right
+      const px = w - 320 - 60;
+      return Math.max(vw(45), px);
+    };
+    // CENTER is biased LEFT of viewport-centre so the 320 px cup tucks into
+    // the story's middle spacer column without spilling over the journal grid.
+    const CENTER = () => {
+      const w = window.innerWidth;
+      // cup right-edge sits ~140px left of viewport centre
+      return Math.max(60, (w / 2) - 320 - 20);
+    };
+    // Left-column anchor — cup tucked ~60px from the viewport left edge.
+    const LEFT   = () => 60;
+
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+    const ease = (t) => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2; // easeInOutQuad
+
+    let target = RIGHT();
+    let current = RIGHT();
+    let raf = null;
+
+    function compute() {
+      const max = (document.documentElement.scrollHeight - window.innerHeight) || 1;
+      const p = clamp(window.scrollY / max, 0, 1);
+
+      // Segments: stable zones at each section + short transitions between them.
+      //   0.00 – 0.22   RIGHT  (hero)
+      //   0.22 – 0.36   RIGHT → CENTER
+      //   0.36 – 0.62   CENTER (story)
+      //   0.62 – 0.78   CENTER → LEFT
+      //   0.78 – 1.00   LEFT   (visit)
+
+      if (p < 0.22) {
+        target = RIGHT();
+      } else if (p < 0.36) {
+        const t = ease((p - 0.22) / 0.14);
+        target = lerp(RIGHT(), CENTER(), t);
+      } else if (p < 0.62) {
+        target = CENTER();
+      } else if (p < 0.78) {
+        const t = ease((p - 0.62) / 0.16);
+        target = lerp(CENTER(), LEFT(), t);
+      } else {
+        target = LEFT();
+      }
+    }
+
+    function tick() {
+      // Smooth follow (extra lerp on top of CSS transition)
+      current = lerp(current, target, 0.15);
+      cup.style.transform =
+        'translate3d(' + current.toFixed(2) + 'px, -50%, 0)';
+      if (Math.abs(current - target) > 0.2) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        current = target;
+        cup.style.transform =
+          'translate3d(' + current.toFixed(2) + 'px, -50%, 0)';
+        raf = null;
+      }
+    }
+
+    function onScroll() {
+      compute();
+      if (!raf) raf = requestAnimationFrame(tick);
+    }
+
+    function onResize() {
+      compute();
+      // snap on resize
+      current = target;
+      cup.style.transform =
+        'translate3d(' + current.toFixed(2) + 'px, -50%, 0)';
+    }
+
+    // init
+    compute();
+    current = target;
+    cup.style.transform =
+      'translate3d(' + current.toFixed(2) + 'px, -50%, 0)';
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+  })();
+</script>
+
+</body>
+</html>
