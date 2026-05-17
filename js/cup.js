@@ -77,6 +77,15 @@
     canvas.releasePointerCapture(e.pointerId);
   });
 
+  canvas.addEventListener('pointercancel', function (e) {
+    isDragging = false;
+    canvas.releasePointerCapture(e.pointerId);
+  });
+
+  canvas.addEventListener('pointerleave', function (e) {
+    isDragging = false;
+  });
+
   /* ── Load model ───────────────────────────────────── */
   var loader = new THREE.GLTFLoader();
   var cup = null;
