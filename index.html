@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Marcel's — A neighbourhood space, New Delhi</title>
-  <meta name="description" content="Marcel's is a neighbourhood café in New Delhi where the coffee gets serious and strangers start to feel like regulars." />
+  <meta name="description"
+    content="Marcel's is a neighbourhood café in New Delhi where the coffee gets serious and strangers start to feel like regulars." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap"
+    rel="stylesheet" />
 
   <link rel="stylesheet" href="./css/styles.css" />
 
@@ -22,282 +26,310 @@
     }
   </script>
 </head>
+
 <body>
 
-<!-- ============ LOADER OVERLAY ============ -->
-<div id="loader-overlay">
-  <div class="loader-content">
-    <div id="loader-logo" class="wordmark">Marcel<span class="apos">'</span>s</div>
-    <div class="loader-sub">Loading...</div>
-    <div class="loader-progress-track">
-      <div id="loader-progress-bar"></div>
-    </div>
-  </div>
-</div>
-<!-- ============ NAV ============ -->
-<nav class="nav" aria-label="Main navigation">
-  <div class="shell nav-inner">
-    <div class="wordmark">Marcel<span class="apos">'</span>s</div>
-    <ul class="nav-links">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#story">Story</a></li>
-      <li><a href="#visit">Visit</a></li>
-    </ul>
-    <div class="nav-aside" style="display: flex; align-items: center; gap: 16px;">
-      <span>New Delhi <span class="dot">·</span> Est. 2024</span>
-      <button id="theme-toggle" class="theme-switch" aria-label="Toggle Theme">
-        <div class="switch-knob"></div>
-        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line>
-          <line x1="12" y1="21" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line>
-          <line x1="21" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<!-- ============ THE CUP (fixed, travels horizontally on scroll) ============ -->
-<div id="cup-anchor" aria-hidden="true">
-  <canvas id="cup-canvas"></canvas>
-</div>
-
-<!-- ============ HERO ============ -->
-<section class="hero" id="hero">
-  <div class="shell hero-row row">
-
-    <div class="hero-left">
-      <div class="eyebrow hero-eyebrow">New Delhi · Est. 2024</div>
-
-      <h1 class="hero-headline">
-        <span class="l">A neighbourhood</span>
-        <span class="l">space <span class="it">dreamt</span></span>
-        <span class="l"><span class="amp">&amp;</span> <span class="it">built.</span></span>
-      </h1>
-
-      <p class="hero-sub">
-        Marcel's is where the city slows down, the coffee gets serious,
-        and strangers start to feel like regulars.
-      </p>
-
-      <div class="hero-cta">
-        <a class="btn btn-solid" href="#visit">Visit Us</a>
-        <a class="btn btn-ghost" href="#story">Our Story <span class="arrow">→</span></a>
+  <!-- ============ LOADER OVERLAY ============ -->
+  <div id="loader-overlay">
+    <div class="loader-content">
+      <div id="loader-logo" class="wordmark">Marcel<span class="apos">'</span>s</div>
+      <div class="loader-sub">Loading...</div>
+      <div class="loader-progress-track">
+        <div id="loader-progress-bar"></div>
       </div>
     </div>
-
-    <!-- Right column — cup floats here during the hero -->
-    <div class="hero-stage" aria-hidden="true">
-      <div class="stage-label">
-        The Cup<br/>
-        <b>follow it down →</b>
+  </div>
+  <!-- ============ NAV ============ -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="shell nav-inner">
+      <div class="wordmark">Marcel<span class="apos">'</span>s</div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+      <div class="nav-aside" style="display: flex; align-items: center; gap: 16px;">
+        <span>New Delhi <span class="dot">·</span> Est. 2024</span>
+        <button id="theme-toggle" class="theme-switch" aria-label="Toggle Theme">
+          <div class="switch-knob"></div>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
       </div>
     </div>
+  </nav>
 
+  <!-- ============ THE CUP (fixed, travels horizontally on scroll) ============ -->
+  <div id="cup-anchor" aria-hidden="true">
+    <canvas id="cup-canvas"></canvas>
   </div>
 
-  <div class="hero-foot">
-    <div class="hours"><b>Mon – Sun</b> · 10 am – 11 pm</div>
-    <div class="vline"></div>
-    <div class="scroll"><span class="bar"></span> Scroll</div>
-  </div>
-</section>
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="shell hero-row row">
 
-<div class="shell"><div class="rule"></div></div>
+      <div class="hero-left">
+        <div class="eyebrow hero-eyebrow">New Delhi · Est. 2024</div>
 
-<!-- ============ STORY + INSTAGRAM ============ -->
-<section class="story" id="story">
-  <div class="shell">
-    <div class="story-grid">
+        <h1 class="hero-headline">
+          <span class="l">A neighbourhood</span>
+          <span class="l">space <span class="it">dreamt</span></span>
+          <span class="l"><span class="amp">&amp;</span> <span class="it">built.</span></span>
+        </h1>
 
-      <!-- LEFT: Brand manifesto -->
-      <div>
-        <div class="eyebrow">Our Story</div>
-        <p class="pull-quote">
-          <span class="mark">"</span>We never wanted to be a café.<br/>
-          We wanted to be <em>yours</em>.<span class="mark">"</span>
+        <p class="hero-sub">
+          Marcel's is where the city slows down, the coffee gets serious,
+          and strangers start to feel like regulars.
         </p>
 
-        <div class="body-copy">
-          <p>
-            There's a particular kind of morning that only happens in a
-            neighbourhood you know by heart — the one where you walk in,
-            nod at the face behind the bar, and your cup arrives before
-            you've found your seat.
-          </p>
-          <p>
-            Marcel's was built for that morning. Not for the city, not
-            for the algorithm — for the block. Every detail, from the
-            coffee to the corners, was chosen so this place feels like
-            it was always here.
-          </p>
-          <p>
-            We serve espresso the way it deserves to be: unhurried,
-            honest, and worth sitting down for. Come once and you'll
-            see. Come twice, and you're already a regular.
-          </p>
-        </div>
-
-        <div class="signature">
-          <span class="dash">—</span>Rudraks,
-          <span style="color:var(--muted);font-style:normal;font-family:var(--sans);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;margin-left:6px;">Founder</span>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="#visit">Visit Us</a>
+          <a class="btn btn-ghost" href="#story">Our Story <span class="arrow">→</span></a>
         </div>
       </div>
 
-      <!-- MIDDLE: space the cup floats through -->
-      <div class="story-spacer" aria-hidden="true"></div>
-
-      <div class="mobile-rule"><div class="rule"></div></div>
-
-      <!-- RIGHT: Instagram journal -->
-      <div id="instagram">
-        <div class="ig-head">
-          <div class="eyebrow">Journal</div>
-          <div class="ig-handle">@marcels.in</div>
+      <!-- Right column — cup floats here during the hero -->
+      <div class="hero-stage" aria-hidden="true">
+        <div class="stage-label">
+          The Cup<br />
+          <b>follow it down →</b>
         </div>
-
-        <div class="ig-grid">
-          <div class="ig-cell">
-            <img src="./assets/cafe_images/1.jpg.jpeg" alt="Marcel's Cafe" class="ig-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-            <div class="placeholder" style="display: none;"></div>
-            <div class="ig-cap">Marcel's Cafe</div>
-          </div>
-
-          <div class="ig-cell">
-            <img src="./assets/cafe_images/2.jpg.jpeg" alt="Marcel's Cafe" class="ig-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-            <div class="placeholder" style="display: none;"></div>
-            <div class="ig-cap">Marcel's Cafe</div>
-          </div>
-          <div class="ig-cell">
-            <img src="./assets/cafe_images/2fedab65-3b61-4c68-82ce-432c3064b08a.JPG" alt="Marcel's Cafe" class="ig-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-            <div class="placeholder" style="display: none;"></div>
-            <div class="ig-cap">Marcel's Cafe</div>
-          </div>
-          <div class="ig-cell">
-            <img src="./assets/cafe_images/Gelato.JPEG" alt="Gelato" class="ig-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-            <div class="placeholder" style="display: none;"></div>
-            <div class="ig-cap">Gelato</div>
-          </div>
-          <div class="ig-cell">
-            <img src="./assets/cafe_images/IMG_0939.JPG" alt="Marcel's Cafe" class="ig-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-            <div class="placeholder" style="display: none;"></div>
-            <div class="ig-cap">Marcel's Cafe</div>
-          </div>
-
-          <div class="ig-cell">
-            <img src="./assets/cafe_images/IMG_0941.JPG" alt="Marcel's Cafe" class="ig-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-            <div class="placeholder" style="display: none;"></div>
-            <div class="ig-cap">Marcel's Cafe</div>
-          </div>
-          <div class="ig-cell">
-            <img src="./assets/cafe_images/IMG_0943.JPG" alt="Marcel's Cafe" class="ig-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-            <div class="placeholder" style="display: none;"></div>
-            <div class="ig-cap">Marcel's Cafe</div>
-          </div>
-          <div class="ig-cell">
-            <img src="./assets/cafe_images/IMG_0944.JPG" alt="Marcel's Cafe" class="ig-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-            <div class="placeholder" style="display: none;"></div>
-            <div class="ig-cap">Marcel's Cafe</div>
-          </div>
-          <div class="ig-cell">
-            <img src="./assets/cafe_images/IMG_0945.JPG" alt="Marcel's Cafe" class="ig-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-            <div class="placeholder" style="display: none;"></div>
-            <div class="ig-cap">Marcel's Cafe</div>
-          </div>
-          <div class="ig-cell">
-            <img src="./assets/cafe_images/IMG_0946.JPG" alt="Marcel's Cafe" class="ig-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-            <div class="placeholder" style="display: none;"></div>
-            <div class="ig-cap">Marcel's Cafe</div>
-          </div>
-        </div>
-
-        <a class="ig-follow" href="https://www.instagram.com/marcels.in/" target="_blank" rel="noopener noreferrer">Follow us on Instagram <span>→</span></a>
       </div>
 
     </div>
+
+    <div class="hero-foot">
+      <div class="hours"><b>Mon – Sun</b> · 10 am – 11 pm</div>
+      <div class="vline"></div>
+      <div class="scroll"><span class="bar"></span> Scroll</div>
+    </div>
+  </section>
+
+  <div class="shell">
+    <div class="rule"></div>
   </div>
-</section>
 
-<div class="shell"><div class="rule"></div></div>
+  <!-- ============ STORY + INSTAGRAM ============ -->
+  <section class="story" id="story">
+    <div class="shell">
+      <div class="story-grid">
 
-<!-- ============ VISIT ============ -->
-<section class="visit" id="visit">
-  <div class="shell visit-row row">
+        <!-- LEFT: Brand manifesto -->
+        <div>
+          <div class="eyebrow">Our Story</div>
+          <p class="pull-quote">
+            <span class="mark">"</span>We never wanted to be a café.<br />
+            We wanted to be <em>yours</em>.<span class="mark">"</span>
+          </p>
 
-    <!-- Left column — cup rests here in the visit section -->
-    <div class="visit-stage" aria-hidden="true">
-      <div class="stage-label" style="left:0;right:auto;text-align:left;">
-        Cup rests here<br/>
-        <b>— the end of the walk</b>
+          <div class="body-copy">
+            <p>
+              There's a particular kind of morning that only happens in a
+              neighbourhood you know by heart — the one where you walk in,
+              nod at the face behind the bar, and your cup arrives before
+              you've found your seat.
+            </p>
+            <p>
+              Marcel's was built for that morning. Not for the city, not
+              for the algorithm — for the block. Every detail, from the
+              coffee to the corners, was chosen so this place feels like
+              it was always here.
+            </p>
+            <p>
+              We serve espresso the way it deserves to be: unhurried,
+              honest, and worth sitting down for. Come once and you'll
+              see. Come twice, and you're already a regular.
+            </p>
+          </div>
+
+          <div class="signature">
+            <span class="dash">—</span>Rudraksh,
+            <span
+              style="color:var(--muted);font-style:normal;font-family:var(--sans);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;margin-left:6px;">Founder</span>
+          </div>
+        </div>
+
+        <!-- MIDDLE: space the cup floats through -->
+        <div class="story-spacer" aria-hidden="true"></div>
+
+        <div class="mobile-rule">
+          <div class="rule"></div>
+        </div>
+
+        <!-- RIGHT: Instagram journal -->
+        <div id="instagram">
+          <div class="ig-head">
+            <div class="eyebrow">Journal</div>
+            <div class="ig-handle">@marcels.in</div>
+          </div>
+
+          <div class="ig-grid">
+            <div class="ig-cell">
+              <img src="./assets/cafe_images/1.jpg.jpeg" alt="Marcel's Cafe" class="ig-img"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <div class="placeholder" style="display: none;"></div>
+              <div class="ig-cap">Marcel's Cafe</div>
+            </div>
+
+            <div class="ig-cell">
+              <img src="./assets/cafe_images/2.jpg.jpeg" alt="Marcel's Cafe" class="ig-img"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <div class="placeholder" style="display: none;"></div>
+              <div class="ig-cap">Marcel's Cafe</div>
+            </div>
+            <div class="ig-cell">
+              <img src="./assets/cafe_images/2fedab65-3b61-4c68-82ce-432c3064b08a.JPG" alt="Marcel's Cafe"
+                class="ig-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <div class="placeholder" style="display: none;"></div>
+              <div class="ig-cap">Marcel's Cafe</div>
+            </div>
+            <div class="ig-cell">
+              <img src="./assets/cafe_images/Gelato.JPEG" alt="Gelato" class="ig-img"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <div class="placeholder" style="display: none;"></div>
+              <div class="ig-cap">Gelato</div>
+            </div>
+            <div class="ig-cell">
+              <img src="./assets/cafe_images/IMG_0939.JPG" alt="Marcel's Cafe" class="ig-img"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <div class="placeholder" style="display: none;"></div>
+              <div class="ig-cap">Marcel's Cafe</div>
+            </div>
+
+            <div class="ig-cell">
+              <img src="./assets/cafe_images/IMG_0941.JPG" alt="Marcel's Cafe" class="ig-img"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <div class="placeholder" style="display: none;"></div>
+              <div class="ig-cap">Marcel's Cafe</div>
+            </div>
+            <div class="ig-cell">
+              <img src="./assets/cafe_images/IMG_0943.JPG" alt="Marcel's Cafe" class="ig-img"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <div class="placeholder" style="display: none;"></div>
+              <div class="ig-cap">Marcel's Cafe</div>
+            </div>
+            <div class="ig-cell">
+              <img src="./assets/cafe_images/IMG_0944.JPG" alt="Marcel's Cafe" class="ig-img"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <div class="placeholder" style="display: none;"></div>
+              <div class="ig-cap">Marcel's Cafe</div>
+            </div>
+            <div class="ig-cell">
+              <img src="./assets/cafe_images/IMG_0945.JPG" alt="Marcel's Cafe" class="ig-img"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <div class="placeholder" style="display: none;"></div>
+              <div class="ig-cap">Marcel's Cafe</div>
+            </div>
+            <div class="ig-cell">
+              <img src="./assets/cafe_images/IMG_0946.JPG" alt="Marcel's Cafe" class="ig-img"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+              <div class="placeholder" style="display: none;"></div>
+              <div class="ig-cap">Marcel's Cafe</div>
+            </div>
+          </div>
+
+          <a class="ig-follow" href="https://www.instagram.com/marcels.in/" target="_blank"
+            rel="noopener noreferrer">Follow us on Instagram <span>→</span></a>
+        </div>
+
       </div>
     </div>
+  </section>
 
-    <div class="visit-left">
-      <div class="eyebrow">Find Us</div>
-      <p class="visit-lead">
-        Come find us. We're where the
-        <span class="it">neighbourhood feels like home.</span>
-      </p>
+  <div class="shell">
+    <div class="rule"></div>
+  </div>
 
-      <div class="info-rows">
-        <div class="info-row">
-          <div class="label">Location</div>
-          <div class="value">New Delhi, India</div>
-        </div>
-        <div class="info-row">
-          <div class="label">Hours</div>
-          <div class="value">Monday – Sunday &nbsp;·&nbsp; 10 am – 11 pm</div>
-        </div>
-        <div class="info-row">
-          <div class="label">Phone</div>
-          <div class="value"><a href="tel:+919891043366">+91 98910 43366</a></div>
-        </div>
-        <div class="info-row">
-          <div class="label">Email</div>
-          <div class="value"><a href="mailto:hello@marcels.in">hello@marcels.in</a></div>
+  <!-- ============ VISIT ============ -->
+  <section class="visit" id="visit">
+    <div class="shell visit-row row">
+
+      <!-- Left column — cup rests here in the visit section -->
+      <div class="visit-stage" aria-hidden="true">
+        <div class="stage-label" style="left:0;right:auto;text-align:left;">
+          Cup rests here<br />
+          <b>— the end of the walk</b>
         </div>
       </div>
 
-      <div class="map-card" id="mapCard">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.606369280145!2d77.2313225!3d28.5667732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3003573bbf3%3A0xb91056ad57c285d6!2sMarcel&#39;s!5e0!3m2!1sen!2sin!4v1715622080000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps - Marcel's Cafe"></iframe>
+      <div class="visit-left">
+        <div class="eyebrow">Find Us</div>
+        <p class="visit-lead">
+          Come find us. We're where the
+          <span class="it">neighbourhood feels like home.</span>
+        </p>
+
+        <div class="info-rows">
+          <div class="info-row">
+            <div class="label">Location</div>
+            <div class="value">New Delhi, India</div>
+          </div>
+          <div class="info-row">
+            <div class="label">Hours</div>
+            <div class="value">Monday – Sunday &nbsp;·&nbsp; 10 am – 11 pm</div>
+          </div>
+          <div class="info-row">
+            <div class="label">Phone</div>
+            <div class="value"><a href="tel:+919891043366">+91 98910 43366</a></div>
+          </div>
+          <div class="info-row">
+            <div class="label">Email</div>
+            <div class="value"><a href="mailto:hello@marcels.in">hello@marcels.in</a></div>
+          </div>
+        </div>
+
+        <div class="map-card" id="mapCard">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.606369280145!2d77.2313225!3d28.5667732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3003573bbf3%3A0xb91056ad57c285d6!2sMarcel&#39;s!5e0!3m2!1sen!2sin!4v1715622080000!5m2!1sen!2sin"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Google Maps - Marcel's Cafe"></iframe>
+        </div>
+
+        <div class="social-row">
+          <a class="btn btn-ghost" href="https://www.instagram.com/marcels.in/" target="_blank"
+            rel="noopener noreferrer">Instagram <span class="arrow">&#x2197;&#xFE0E;</span></a>
+          <a class="btn btn-ghost"
+            href="https://www.google.com/maps/place/Marcel's/@28.5667732,77.2313225,17z/data=!3m1!4b1!4m6!3m5!1s0x390ce3003573bbf3:0xb91056ad57c285d6!8m2!3d28.5667732!4d77.2338974!16s%2Fg%2F11yz6nv9rm?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank" rel="noopener noreferrer">Get Directions <span class="arrow">&#x2197;&#xFE0E;</span></a>
+        </div>
       </div>
 
-      <div class="social-row">
-        <a class="btn btn-ghost" href="https://www.instagram.com/marcels.in/" target="_blank" rel="noopener noreferrer">Instagram <span class="arrow">&#x2197;&#xFE0E;</span></a>
-        <a class="btn btn-ghost" href="https://www.google.com/maps/place/Marcel's/@28.5667732,77.2313225,17z/data=!3m1!4b1!4m6!3m5!1s0x390ce3003573bbf3:0xb91056ad57c285d6!8m2!3d28.5667732!4d77.2338974!16s%2Fg%2F11yz6nv9rm?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Get Directions <span class="arrow">&#x2197;&#xFE0E;</span></a>
-      </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="shell footer-inner">
+      <div class="foot-left">© 2025 Marcel's</div>
+      <div class="foot-mark">MARCEL<span class="apos">'</span>S</div>
+      <div class="foot-right">a neighbourhood space</div>
+    </div>
+  </footer>
 
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="shell footer-inner">
-    <div class="foot-left">© 2025 Marcel's</div>
-    <div class="foot-mark">MARCEL<span class="apos">'</span>S</div>
-    <div class="foot-right">a neighbourhood space</div>
-  </div>
-</footer>
+  <!-- Three.js (r128 UMD) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" defer></script>
 
-<!-- Three.js (r128 UMD) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" defer></script>
-
-<!-- Site scripts -->
-<script src="./js/cup.js" defer></script>
-<script src="./js/scroll.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="./js/loader.js" defer></script>
+  <!-- Site scripts -->
+  <script src="./js/cup.js" defer></script>
+  <script src="./js/scroll.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="./js/loader.js" defer></script>
 
 </body>
+
 </html>
