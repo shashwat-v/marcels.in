@@ -127,4 +127,22 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("theme", theme);
     });
   }
+
+  // Journal Image Slide-in Animation
+  var observer = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  });
+
+  var igCells = document.querySelectorAll('.ig-cell');
+  igCells.forEach(function(cell) {
+    observer.observe(cell);
+  });
 });

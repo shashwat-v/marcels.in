@@ -1,8 +1,9 @@
 (function () {
   "use strict";
 
-  var canvas = document.getElementById("cup-canvas");
-  if (!canvas || !window.THREE) return;
+  function initCup() {
+    var canvas = document.getElementById("cup-canvas");
+    if (!canvas || !window.THREE) return;
 
   var W = 500, H = 500;
 
@@ -194,4 +195,11 @@
     renderer.render(scene, camera);
   }
   animate();
+  }
+
+  if (window.loaderHasCompleted) {
+    initCup();
+  } else {
+    document.addEventListener('loaderComplete', initCup);
+  }
 })();
