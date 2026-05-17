@@ -9,7 +9,7 @@
   /* ── Renderer ─────────────────────────────────────── */
   var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(W, H, false); 
+  renderer.setSize(W, H, false);
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.3;
@@ -49,13 +49,13 @@
   var autoRotation = 0;
   var autoTiltZ = 0;
 
-  canvas.addEventListener('pointerdown', function(e) {
+  canvas.addEventListener('pointerdown', function (e) {
     isDragging = true;
     previousMousePosition = { x: e.clientX, y: e.clientY };
     canvas.setPointerCapture(e.pointerId);
   });
 
-  canvas.addEventListener('pointermove', function(e) {
+  canvas.addEventListener('pointermove', function (e) {
     if (isDragging) {
       var deltaMove = {
         x: e.clientX - previousMousePosition.x,
@@ -65,13 +65,13 @@
       targetRotationY += deltaMove.x * 0.008;
       targetRotationX += deltaMove.y * 0.008;
 
-      targetRotationX = Math.max(-Math.PI/6, Math.min(Math.PI/4, targetRotationX));
+      targetRotationX = Math.max(-Math.PI / 6, Math.min(Math.PI / 4, targetRotationX));
 
       previousMousePosition = { x: e.clientX, y: e.clientY };
     }
   });
 
-  canvas.addEventListener('pointerup', function(e) {
+  canvas.addEventListener('pointerup', function (e) {
     isDragging = false;
     canvas.releasePointerCapture(e.pointerId);
   });
@@ -97,9 +97,9 @@
 
       var box = new THREE.Box3().setFromObject(model);
       var center = box.getCenter(new THREE.Vector3());
-      var size   = box.getSize(new THREE.Vector3());
+      var size = box.getSize(new THREE.Vector3());
       var maxDim = Math.max(size.x, size.y, size.z);
-      var scale  = 2.0 / maxDim; // scaled up to 2.0 as requested
+      var scale = 2.0 / maxDim; // scaled up to 2.0 as requested
 
       model.scale.setScalar(scale);
       model.position.x = -center.x * scale;
@@ -108,12 +108,12 @@
 
       cup = new THREE.Group();
       cup.add(model);
-      
+
       baseY = cup.position.y;
       scene.add(cup);
 
       var fadeStart = performance.now();
-      var fadeDur   = 1200;
+      var fadeDur = 1200;
 
       (function fadeTick() {
         var p = Math.min((performance.now() - fadeStart) / fadeDur, 1);
@@ -137,14 +137,14 @@
   var clock = 0;
   function animate() {
     requestAnimationFrame(animate);
-    
+
     if (cup) {
       if (!isDragging) {
         // Compute rotation based on scroll progress
         var maxScroll = (document.documentElement.scrollHeight - window.innerHeight) || 1;
         var p = Math.max(0, Math.min(1, window.scrollY / maxScroll));
-        
-        var INITIAL_OFFSET = Math.PI / 2 - 0.4;
+
+        var INITIAL_OFFSET = Math.PI / 2 - 0.55;
         var targetAutoRotation = INITIAL_OFFSET;
         var targetAutoTiltZ = 0;
         if (p < 0.22) {
@@ -164,29 +164,29 @@
         } else {
           targetAutoRotation += Math.PI * 4;
         }
-        
+
         // smoothly transition autoRotation if we want, or just set it
         // since 'p' is smooth during user scroll, we can just lerp it slightly for extra smoothness
         autoRotation += (targetAutoRotation - autoRotation) * 0.15;
         autoTiltZ += (targetAutoTiltZ - autoTiltZ) * 0.15;
-        
+
         // Decay manual rotation so it always returns to front-facing when not interacted with
         targetRotationY *= 0.95;
         targetRotationX *= 0.95;
       }
-      
+
       var rY = autoRotation + targetRotationY;
       var rX = targetRotationX;
-      
+
       var floatTiltX = Math.sin(clock * 1.1) * 0.02;
       var floatTiltZ = Math.cos(clock * 1.3) * 0.02;
-      
+
       cup.rotation.y += (rY - cup.rotation.y) * 0.1;
       cup.rotation.x += ((rX + floatTiltX) - cup.rotation.x) * 0.1;
       cup.rotation.z = floatTiltZ + autoTiltZ;
 
       clock += 0.016;
-      
+
       var floatY = Math.sin(clock * 1.5) * 0.04;
       cup.position.y += ((baseY + floatY) - cup.position.y) * 0.1;
     }
