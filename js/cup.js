@@ -147,17 +147,17 @@
         var INITIAL_OFFSET = Math.PI / 2 - 0.55;
         var targetAutoRotation = INITIAL_OFFSET;
         var targetAutoTiltZ = 0;
-        if (p < 0.22) {
+        if (p < 0.10) {
           targetAutoRotation += 0;
-        } else if (p < 0.36) {
-          var t = (p - 0.22) / 0.14;
+        } else if (p < 0.24) {
+          var t = (p - 0.10) / 0.14;
           var ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
           targetAutoRotation += ease * Math.PI * 2;
           targetAutoTiltZ = Math.sin(t * Math.PI) * 0.3;
-        } else if (p < 0.62) {
+        } else if (p < 0.52) {
           targetAutoRotation += Math.PI * 2;
-        } else if (p < 0.78) {
-          var t = (p - 0.62) / 0.16;
+        } else if (p < 0.68) {
+          var t = (p - 0.52) / 0.16;
           var ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
           targetAutoRotation += Math.PI * 2 + ease * Math.PI * 2;
           targetAutoTiltZ = Math.sin(t * Math.PI) * 0.3;

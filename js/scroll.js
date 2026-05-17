@@ -11,11 +11,11 @@
   // Visit  → cup in LEFT column
   //
   // Segments (scroll progress 0–1):
-  //   0.00 – 0.22  RIGHT  stable
-  //   0.22 – 0.36  RIGHT → CENTER  transition
-  //   0.36 – 0.62  CENTER stable
-  //   0.62 – 0.78  CENTER → LEFT   transition
-  //   0.78 – 1.00  LEFT   stable
+  //   0.00 – 0.10  RIGHT  stable
+  //   0.10 – 0.24  RIGHT → CENTER  transition
+  //   0.24 – 0.52  CENTER stable
+  //   0.52 – 0.68  CENTER → LEFT   transition
+  //   0.68 – 1.00  LEFT   stable
 
   var CUP_W = 500;
 
@@ -46,21 +46,21 @@
     var max = (document.documentElement.scrollHeight - window.innerHeight) || 1;
     var p = clamp(window.scrollY / max, 0, 1);
 
-    if (p < 0.22) {
+    if (p < 0.10) {
       targetX = RIGHT();
       targetY = 0;
-    } else if (p < 0.36) {
-      targetX = lerp(RIGHT(), CENTER(), easeInOutQuad((p - 0.22) / 0.14));
+    } else if (p < 0.24) {
+      targetX = lerp(RIGHT(), CENTER(), easeInOutQuad((p - 0.10) / 0.14));
       targetY = 0;
-    } else if (p < 0.62) {
+    } else if (p < 0.52) {
       targetX = CENTER();
       targetY = 0;
-    } else if (p < 0.78) {
-      targetX = lerp(CENTER(), LEFT(), easeInOutQuad((p - 0.62) / 0.16));
+    } else if (p < 0.68) {
+      targetX = lerp(CENTER(), LEFT(), easeInOutQuad((p - 0.52) / 0.16));
       targetY = 0;
     } else {
       targetX = LEFT();
-      var t = (p - 0.78) / 0.22;
+      var t = (p - 0.68) / 0.32;
       var ease = easeInOutQuad(t);
       var label = document.querySelector('.visit-stage .stage-label');
       if (label) {
