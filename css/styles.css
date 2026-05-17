@@ -18,6 +18,19 @@
   --gutter: clamp(28px, 5vw, 88px);
 }
 
+body.dark-theme {
+  --bg: #1A1008;
+  --bg-warm: #26160d;
+  --ink: #FAF5EE;
+  --muted: #B39E92;
+  --rule: rgba(250, 245, 238, 0.15);
+  --rule-strong: rgba(250, 245, 238, 0.28);
+  --tile-a: #26160d;
+  --tile-b: #301b10;
+  --burgundy: #D4C4B0;
+  --burgundy-hi: #E8D9C8;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -84,6 +97,11 @@ body {
   backdrop-filter: saturate(140%) blur(8px);
   -webkit-backdrop-filter: saturate(140%) blur(8px);
   border-bottom: 1px solid var(--rule);
+  transition: background .3s ease;
+}
+
+body.dark-theme .nav {
+  background: rgba(26, 16, 8, 0.85);
 }
 
 .nav-inner {
@@ -98,15 +116,18 @@ body {
   font-family: var(--serif);
   font-weight: 500;
   font-size: 22px;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.45em;
   color: var(--burgundy);
   text-transform: uppercase;
 }
 
-.wordmark .apos {
+.wordmark .apos,
+.foot-mark .apos {
   font-style: italic;
   font-weight: 400;
-  letter-spacing: 0;
+  letter-spacing: 0.1em;
+  margin-left: -0.3em;
+  margin-right: 0.15em;
 }
 
 .nav-links {
@@ -120,7 +141,7 @@ body {
 .nav-links a {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--ink);
@@ -138,7 +159,7 @@ body {
 .nav-aside {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--muted);
@@ -153,7 +174,7 @@ body {
 .eyebrow {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--burgundy);
@@ -180,7 +201,7 @@ body {
   padding: 14px 26px;
   font-family: var(--sans);
   font-weight: 400;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   text-decoration: none;
@@ -219,11 +240,80 @@ body {
   transform: translateX(4px);
 }
 
+/* ---------- Theme Switch ---------- */
+.theme-switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60px;
+  height: 30px;
+  background: var(--rule-strong);
+  border-radius: 15px;
+  border: 1px solid var(--rule);
+  cursor: pointer;
+  padding: 0 7px;
+  transition: background 0.3s ease;
+}
+
+.theme-switch svg {
+  width: 14px;
+  height: 14px;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.theme-switch .switch-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 26px;
+  height: 24px;
+  background: var(--bg);
+  border-radius: 12px;
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), background 0.3s ease;
+  z-index: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Light mode (default) */
+.theme-switch .switch-knob {
+  transform: translateX(28px);
+  background: var(--bg);
+}
+
+.theme-switch .sun-icon {
+  color: var(--ink);
+}
+
+.theme-switch .moon-icon {
+  color: var(--muted);
+}
+
+/* Dark mode */
+body.dark-theme .theme-switch {
+  background: rgba(250, 245, 238, 0.1);
+  border-color: rgba(250, 245, 238, 0.15);
+}
+
+body.dark-theme .theme-switch .switch-knob {
+  transform: translateX(0);
+  background: #2A1008;
+}
+
+body.dark-theme .theme-switch .moon-icon {
+  color: var(--burgundy);
+}
+
+body.dark-theme .theme-switch .sun-icon {
+  color: var(--muted);
+}
+
 /* ---------- HERO ---------- */
 .hero {
   position: relative;
-  padding-top: clamp(60px, 9vw, 110px);
-  padding-bottom: clamp(80px, 10vw, 140px);
+  padding-top: clamp(30px, 4vw, 50px);
+  padding-bottom: clamp(60px, 8vw, 100px);
   min-height: calc(100vh - 70px);
   display: flex;
   align-items: center;
@@ -305,6 +395,8 @@ body {
   position: absolute;
   left: 0;
   right: 0;
+  max-width: var(--max);
+  margin: 0 auto;
   bottom: clamp(32px, 4vw, 56px);
   display: flex;
   align-items: center;
@@ -317,7 +409,7 @@ body {
 
 .hero-foot .hours {
   font-family: var(--sans);
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--muted);
@@ -336,7 +428,7 @@ body {
 
 .hero-foot .scroll {
   font-family: var(--sans);
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--burgundy);
@@ -365,7 +457,7 @@ body {
   bottom: 0;
   right: 0;
   font-family: var(--sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--muted);
@@ -421,7 +513,7 @@ body {
   font-family: var(--sans);
   font-weight: 300;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.95;
   margin: 0 0 18px;
   max-width: 440px;
@@ -490,6 +582,13 @@ body {
       transparent 12px 24px);
 }
 
+.ig-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .ig-cap {
   position: absolute;
   left: 12px;
@@ -498,7 +597,7 @@ body {
   font-family: var(--serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.25;
   color: var(--ink);
   opacity: 0.75;
@@ -534,7 +633,7 @@ body {
   margin-top: 28px;
   font-family: var(--sans);
   font-weight: 400;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--burgundy);
@@ -598,7 +697,7 @@ body {
 .info-row .label {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--muted);
@@ -637,7 +736,11 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: border-color .25s ease;
+  transition: border-color .25s ease, background .3s ease;
+}
+
+body.dark-theme .map-card {
+  background: linear-gradient(180deg, #26160d, #1a1008);
 }
 
 .map-card:hover {
@@ -678,14 +781,14 @@ body {
 .map-text {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--burgundy);
 }
 
 .social-row {
-  margin-top: 36px;
+  margin-top: 20px;
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
@@ -707,7 +810,7 @@ footer {
 .foot-left,
 .foot-right {
   font-family: var(--sans);
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--muted);
@@ -728,7 +831,7 @@ footer {
   font-family: var(--serif);
   font-weight: 500;
   font-size: 22px;
-  letter-spacing: 0.42em;
+  letter-spacing: 0.45em;
   color: var(--burgundy);
   text-transform: uppercase;
   text-align: center;
@@ -798,6 +901,17 @@ footer {
 
 /* ---------- Mobile ---------- */
 @media (max-width: 860px) {
+
+  .nav-inner {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 36px;
+    padding-bottom: 50px;
+  }
 
   .row,
   .story-grid {

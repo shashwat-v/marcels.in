@@ -36,35 +36,53 @@
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function easeInOutQuad(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
 
-  var target  = RIGHT();
-  var current = RIGHT();
-  var raf     = null;
+  var targetX = RIGHT();
+  var currentX = RIGHT();
+  var targetY = 0;
+  var currentY = 0;
+  var raf = null;
 
   function compute() {
     var max = (document.documentElement.scrollHeight - window.innerHeight) || 1;
-    var p   = clamp(window.scrollY / max, 0, 1);
+    var p = clamp(window.scrollY / max, 0, 1);
 
     if (p < 0.22) {
-      target = RIGHT();
+      targetX = RIGHT();
+      targetY = 0;
     } else if (p < 0.36) {
-      target = lerp(RIGHT(), CENTER(), easeInOutQuad((p - 0.22) / 0.14));
+      targetX = lerp(RIGHT(), CENTER(), easeInOutQuad((p - 0.22) / 0.14));
+      targetY = 0;
     } else if (p < 0.62) {
-      target = CENTER();
+      targetX = CENTER();
+      targetY = 0;
     } else if (p < 0.78) {
-      target = lerp(CENTER(), LEFT(), easeInOutQuad((p - 0.62) / 0.16));
+      targetX = lerp(CENTER(), LEFT(), easeInOutQuad((p - 0.62) / 0.16));
+      targetY = 0;
     } else {
-      target = LEFT();
+      targetX = LEFT();
+      var t = (p - 0.78) / 0.22;
+      var ease = easeInOutQuad(t);
+      var label = document.querySelector('.visit-stage .stage-label');
+      if (label) {
+        var rect = label.getBoundingClientRect();
+        var desiredYOffset = rect.bottom - (window.innerHeight / 2) - 320;
+        targetY = desiredYOffset * ease;
+      } else {
+        targetY = 0;
+      }
     }
   }
 
   function tick() {
-    current = lerp(current, target, 0.15);
-    cup.style.transform = "translate3d(" + current.toFixed(2) + "px, -50%, 0)";
-    if (Math.abs(current - target) > 0.2) {
+    currentX = lerp(currentX, targetX, 0.15);
+    currentY = lerp(currentY, targetY, 0.15);
+    cup.style.transform = "translate3d(" + currentX.toFixed(2) + "px, calc(-50% + " + currentY.toFixed(2) + "px), 0)";
+    if (Math.abs(currentX - targetX) > 0.2 || Math.abs(currentY - targetY) > 0.2) {
       raf = requestAnimationFrame(tick);
     } else {
-      current = target;
-      cup.style.transform = "translate3d(" + current.toFixed(2) + "px, -50%, 0)";
+      currentX = targetX;
+      currentY = targetY;
+      cup.style.transform = "translate3d(" + currentX.toFixed(2) + "px, calc(-50% + " + currentY.toFixed(2) + "px), 0)";
       raf = null;
     }
   }
@@ -76,15 +94,37 @@
 
   function onResize() {
     compute();
-    current = target;
-    cup.style.transform = "translate3d(" + current.toFixed(2) + "px, -50%, 0)";
+    currentX = targetX;
+    currentY = targetY;
+    cup.style.transform = "translate3d(" + currentX.toFixed(2) + "px, calc(-50% + " + currentY.toFixed(2) + "px), 0)";
   }
 
   // Initialise
   compute();
-  current = target;
-  cup.style.transform = "translate3d(" + current.toFixed(2) + "px, -50%, 0)";
+  currentX = targetX;
+  currentY = targetY;
+  cup.style.transform = "translate3d(" + currentX.toFixed(2) + "px, calc(-50% + " + currentY.toFixed(2) + "px), 0)";
 
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onResize);
 })();
+
+// Theme Toggle
+document.addEventListener("DOMContentLoaded", function () {
+  var themeToggle = document.getElementById("theme-toggle");
+  var body = document.body;
+
+  if (themeToggle) {
+    // Check local storage
+    var currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "dark") {
+      body.classList.add("dark-theme");
+    }
+
+    themeToggle.addEventListener("click", function () {
+      body.classList.toggle("dark-theme");
+      var theme = body.classList.contains("dark-theme") ? "dark" : "light";
+      localStorage.setItem("theme", theme);
+    });
+  }
+});
