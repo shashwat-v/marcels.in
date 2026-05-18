@@ -686,6 +686,8 @@ body.dark-theme .theme-switch .sun-icon {
 
 .info-rows {
   border-top: 1px solid var(--rule);
+  position: relative;
+  z-index: 2;
 }
 
 .info-row {
@@ -733,6 +735,7 @@ body.dark-theme .theme-switch .sun-icon {
   height: 240px;
   border: 1px solid var(--rule);
   overflow: hidden;
+  clip-path: inset(0);
   display: block;
   transition: border-color .25s ease;
   background: var(--tile-a);
