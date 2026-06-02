@@ -334,7 +334,7 @@ body.dark-theme .theme-switch .sun-icon {
   font-weight: 300;
   color: var(--ink);
   font-size: clamp(56px, 7.6vw, 116px);
-  line-height: 1.02;
+  line-height: 0.92;
   letter-spacing: -0.005em;
   margin: 0 0 clamp(28px, 3.6vw, 44px);
 }

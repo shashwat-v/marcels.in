@@ -149,15 +149,26 @@
     requestAnimationFrame(animate);
 
     if (cup) {
-      if (!isDragging) {
-        // Compute rotation based on scroll progress
-        var maxScroll = (document.documentElement.scrollHeight - window.innerHeight) || 1;
-        var p = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+      var maxScroll = (document.documentElement.scrollHeight - window.innerHeight) || 1;
+      var p = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+      var isMobile = window.innerWidth <= 860;
+      var targetScale = 1;
 
+      if (isMobile) {
+        // Pop up the scale during empty transitions
+        if (p >= 0.10 && p < 0.24) {
+          var t = (p - 0.10) / 0.14;
+          targetScale = 1 + Math.sin(t * Math.PI) * 0.4;
+        } else if (p >= 0.52 && p < 0.68) {
+          var t = (p - 0.52) / 0.16;
+          targetScale = 1 + Math.sin(t * Math.PI) * 0.4;
+        }
+      }
+
+      if (!isDragging) {
         var INITIAL_OFFSET = Math.PI / 2 - 0.55;
         var targetAutoRotation = INITIAL_OFFSET;
         var targetAutoTiltZ = 0;
-        var isMobile = window.innerWidth <= 860;
 
         if (isMobile) {
           // Spin exactly 6 full times (12 * Math.PI) across the whole page length
@@ -207,6 +218,9 @@
 
       var floatY = Math.sin(clock * 1.5) * 0.04;
       cup.position.y += ((baseY + floatY) - cup.position.y) * 0.1;
+
+      var currentScale = cup.scale.x;
+      cup.scale.setScalar(currentScale + (targetScale - currentScale) * 0.1);
     }
 
     renderer.render(scene, camera);
