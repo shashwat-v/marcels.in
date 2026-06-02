@@ -933,7 +933,17 @@ footer {
   }
 
   #cup-anchor {
-    display: none;
+    display: block;
+    position: fixed;
+    top: auto;
+    bottom: 20px;
+    left: auto;
+    right: 20px;
+    transform: none;
+    width: 160px;
+    height: 160px;
+    z-index: 50;
+    touch-action: none; /* Prevents page scroll when interacting with cup */
   }
 
   .footer-inner {

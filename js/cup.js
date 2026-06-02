@@ -157,22 +157,30 @@
         var INITIAL_OFFSET = Math.PI / 2 - 0.55;
         var targetAutoRotation = INITIAL_OFFSET;
         var targetAutoTiltZ = 0;
-        if (p < 0.10) {
-          targetAutoRotation += 0;
-        } else if (p < 0.24) {
-          var t = (p - 0.10) / 0.14;
-          var ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-          targetAutoRotation += ease * Math.PI * 2;
-          targetAutoTiltZ = Math.sin(t * Math.PI) * 0.3;
-        } else if (p < 0.52) {
-          targetAutoRotation += Math.PI * 2;
-        } else if (p < 0.68) {
-          var t = (p - 0.52) / 0.16;
-          var ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-          targetAutoRotation += Math.PI * 2 + ease * Math.PI * 2;
-          targetAutoTiltZ = Math.sin(t * Math.PI) * 0.3;
+        var isMobile = window.innerWidth <= 860;
+
+        if (isMobile) {
+          // Spin exactly 6 full times (12 * Math.PI) across the whole page length
+          // This ensures it faces front at p=0 and exactly front at p=1
+          targetAutoRotation += p * (Math.PI * 12);
         } else {
-          targetAutoRotation += Math.PI * 4;
+          if (p < 0.10) {
+            targetAutoRotation += 0;
+          } else if (p < 0.24) {
+            var t = (p - 0.10) / 0.14;
+            var ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+            targetAutoRotation += ease * Math.PI * 2;
+            targetAutoTiltZ = Math.sin(t * Math.PI) * 0.3;
+          } else if (p < 0.52) {
+            targetAutoRotation += Math.PI * 2;
+          } else if (p < 0.68) {
+            var t = (p - 0.52) / 0.16;
+            var ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+            targetAutoRotation += Math.PI * 2 + ease * Math.PI * 2;
+            targetAutoTiltZ = Math.sin(t * Math.PI) * 0.3;
+          } else {
+            targetAutoRotation += Math.PI * 4;
+          }
         }
 
         // smoothly transition autoRotation if we want, or just set it

@@ -2,6 +2,7 @@
   "use strict";
 
   var cup = document.getElementById("cup-anchor");
+  var footerEl = document.querySelector("footer");
   if (!cup) return;
 
   // The cup (320 px wide) travels horizontally as the user scrolls.
@@ -73,7 +74,28 @@
     }
   }
 
+  function updateMobileCup() {
+    if (footerEl) {
+      var rect = footerEl.getBoundingClientRect();
+      var diff = window.innerHeight - rect.top;
+      if (diff > 0) {
+        cup.style.transform = "translateY(" + (-diff) + "px)";
+      } else {
+        cup.style.transform = "";
+      }
+    } else {
+      cup.style.transform = "";
+    }
+  }
+
   function tick() {
+    var isMobile = window.innerWidth <= 860;
+    if (isMobile) {
+      updateMobileCup();
+      raf = null;
+      return;
+    }
+
     currentX = lerp(currentX, targetX, 0.15);
     currentY = lerp(currentY, targetY, 0.15);
     cup.style.transform = "translate3d(" + currentX.toFixed(2) + "px, calc(-50% + " + currentY.toFixed(2) + "px), 0)";
@@ -88,11 +110,21 @@
   }
 
   function onScroll() {
+    var isMobile = window.innerWidth <= 860;
+    if (isMobile) {
+      updateMobileCup();
+      return;
+    }
     compute();
     if (!raf) raf = requestAnimationFrame(tick);
   }
 
   function onResize() {
+    var isMobile = window.innerWidth <= 860;
+    if (isMobile) {
+      updateMobileCup();
+      return;
+    }
     compute();
     currentX = targetX;
     currentY = targetY;
@@ -100,10 +132,15 @@
   }
 
   // Initialise
-  compute();
-  currentX = targetX;
-  currentY = targetY;
-  cup.style.transform = "translate3d(" + currentX.toFixed(2) + "px, calc(-50% + " + currentY.toFixed(2) + "px), 0)";
+  var isMobile = window.innerWidth <= 860;
+  if (!isMobile) {
+    compute();
+    currentX = targetX;
+    currentY = targetY;
+    cup.style.transform = "translate3d(" + currentX.toFixed(2) + "px, calc(-50% + " + currentY.toFixed(2) + "px), 0)";
+  } else {
+    updateMobileCup();
+  }
 
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onResize);
